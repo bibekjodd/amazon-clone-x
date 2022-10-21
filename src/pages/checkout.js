@@ -8,6 +8,7 @@ import { useEffect } from "react"
 import { loadStripe } from '@stripe/stripe-js'
 import axios from 'axios'
 const stripePromise = loadStripe(process.env.stripe_public_key);
+// const stripePromise = loadStripe(process.env.STRIPE_PUBLIC_KEY);
 
 function checkout() {
     const items = useSelector(selectItems);
@@ -28,13 +29,13 @@ function checkout() {
 
     const createCheckoutSession = async () => {
         try {
-            localStorage.clear();
             const stripe = await stripePromise;
             const checkoutSession = await axios.post('/api/create-checkout-session', {
                 items: items,
                 email: data.user.email,
-                timestamp: serverTimestamp
             });
+            console.log(checkoutSession)
+            // localStorage.clear();
             const result = await stripe.redirectToCheckout({
                 sessionId: checkoutSession.data.id
             });

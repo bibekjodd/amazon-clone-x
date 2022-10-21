@@ -3,13 +3,21 @@ import React from 'react'
 import { HiOutlineSearch } from 'react-icons/hi'
 import { CgShoppingCart } from 'react-icons/cg'
 import { AiOutlineMenu } from 'react-icons/ai'
+import { signIn, signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux'
+import { selectItems } from '../slices/basketReducer'
 
 function Header() {
+    const items = useSelector(selectItems);
+    const router = useRouter();
+    const { data } = useSession();
     return (
         <header className='w-full text-[13px] xs:text-sm'>
             {/* top nav */}
             <div className='bg-amazon_blue flex items-center p-nice py-2 '>
-                <div className='w-fit grid place-items-center'>
+                <div onClick={() => { router.push('/') }}
+                    className='w-fit grid place-items-center'>
                     <Image
                         src='/logo.png'
                         height={40} width={150} objectFit='contain'
@@ -25,8 +33,9 @@ function Header() {
                 </div>
                 {/* right  */}
                 <div className='flex items-center text-white text-center whitespace-nowrap space-x-5 px-3  ml-auto'>
-                    <div className='flex items-center flex-col cursor-pointer'>
-                        <p className='text-xs font-semibold'>Hello, sign in</p>
+                    <div onClick={!data ? signIn : signOut}
+                        className='flex items-center flex-col cursor-pointer'>
+                        <p className='text-xs font-semibold'>Hello, {data ? data.user.name : 'Sign In'}</p>
                         <p className='font-semibold '>Account & Lists</p>
                     </div>
 
@@ -35,9 +44,10 @@ function Header() {
                         <p className='font-semibold'>& Orders</p>
                     </div>
 
-                    <div className='flex items-center  cursor-pointer relative'>
+                    <div onClick={() => { router.push('/checkout') }}
+                        className='flex items-center  cursor-pointer relative'>
                         <div className='absolute top-0 right-1/3 bg-yellow-400 px-1 text-black rounded-full w-fit aspect-square grid place-items-center'>
-                            <p className='text-xs'>0</p>
+                            <p className='text-xs'>{items.length}</p>
                         </div>
                         <CgShoppingCart className='text-3xl sm:text-4xl' />
                         <p className='self-end font-semibold '>Cart</p>

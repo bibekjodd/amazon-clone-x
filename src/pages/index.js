@@ -5,7 +5,7 @@ import ProductFeed from "../components/ProductFeed"
 
 function index({ products }) {
   return (
-    <div className="w-full flex flex-col items-center ">
+    <div className="">
       <Header />
       <Banner />
       <ProductFeed products={products} />

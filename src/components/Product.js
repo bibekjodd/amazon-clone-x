@@ -1,7 +1,16 @@
 import Image from "next/image"
 import { AiFillStar } from "react-icons/ai"
+import { useDispatch } from 'react-redux'
+import { addToBasket } from "../slices/basketReducer";
 
 function Product({ id, title, price, description, category, image, }) {
+    const dispatch = useDispatch();
+    const addItemToBasket = () => {
+        const product = {
+            id, title, price, description, category, image
+        }
+        dispatch(addToBasket(product))
+    }
     return (
         <div className="relative flex flex-col m-5 bg-white z-30 p-10 rounded-sm">
             <p className="absolute top-2 right-2 text-xs italic text-gray-400">{category}</p>
@@ -23,7 +32,8 @@ function Product({ id, title, price, description, category, image, }) {
                     className="w-12 " />
                 <p className="text-xs text-gray-500">Free Next-Day Delivery</p>
             </div>
-            <button className="self-stretch text-center mt-auto button">Add to Basket</button>
+            <button onClick={addItemToBasket}
+                className="self-stretch text-center mt-auto button">Add to Basket</button>
         </div>
     )
 }

@@ -10,7 +10,8 @@ export const basketSlice = createSlice({
             state.items = [
                 ...state.items,
                 action.payload
-            ]
+            ];
+            localStorage.setItem('amazon', JSON.stringify(state.items));
         },
         removeFromBasket: (state, action) => {
             const index = state.items.findIndex(basketItem => basketItem.id === action.payload.id)
@@ -25,8 +26,10 @@ export const basketSlice = createSlice({
             }
             state.items = [
                 ...newBasket
-            ]
+            ];
+            localStorage.setItem('amazon', JSON.stringify(state.items));
         },
+
     }
 
 });

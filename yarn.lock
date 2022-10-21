@@ -566,6 +566,11 @@
   "resolved" "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.2.0.tgz"
   "version" "1.2.0"
 
+"@stripe/stripe-js@^1.42.0":
+  "integrity" "sha512-ZaQpZo5PRv/mN6157OywMW4fc7FIS+eI/tS12I1gU9MdvnL8fzFktuAU/g9FyUOL22E4t9hF1tsfLQAZcQDokQ=="
+  "resolved" "https://registry.npmjs.org/@stripe/stripe-js/-/stripe-js-1.42.0.tgz"
+  "version" "1.42.0"
+
 "@swc/helpers@0.4.11":
   "integrity" "sha512-rEUrBSGIoSFuYxwBYtlUFMlE2CwGhmW+w9355/5oduSw8e5h2+Tj4UrAGNNgP9915++wj5vkQo0UuOBqOAq4nw=="
   "resolved" "https://registry.npmjs.org/@swc/helpers/-/helpers-0.4.11.tgz"
@@ -591,7 +596,7 @@
   "resolved" "https://registry.npmjs.org/@types/long/-/long-4.0.2.tgz"
   "version" "4.0.2"
 
-"@types/node@>=12.12.47", "@types/node@>=13.7.0":
+"@types/node@>=12.12.47", "@types/node@>=13.7.0", "@types/node@>=8.1.0":
   "integrity" "sha512-fNjDQzzOsZeKZu5NATgXUPsaFaTxeRgFXoosrHivTl8RGeV733OLawXsGfEk9a8/tySyZUyiZ6E8LcjPFZ2y1A=="
   "resolved" "https://registry.npmjs.org/@types/node/-/node-18.11.3.tgz"
   "version" "18.11.3"
@@ -2328,6 +2333,13 @@
   "resolved" "https://registry.npmjs.org/punycode/-/punycode-2.1.1.tgz"
   "version" "2.1.1"
 
+"qs@^6.11.0":
+  "integrity" "sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q=="
+  "resolved" "https://registry.npmjs.org/qs/-/qs-6.11.0.tgz"
+  "version" "6.11.0"
+  dependencies:
+    "side-channel" "^1.0.4"
+
 "queue-microtask@^1.2.2":
   "integrity" "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="
   "resolved" "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
@@ -2648,6 +2660,14 @@
   "integrity" "sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig=="
   "resolved" "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-3.1.1.tgz"
   "version" "3.1.1"
+
+"stripe@^10.15.0":
+  "integrity" "sha512-KXw7dozfIEQCxsshjKUwsNwlD55CkhcvVgwwxFtQNikVlRpNUPy6Ljz2mN9OXjinbbmLIcn26MAiPxfNp8Adtg=="
+  "resolved" "https://registry.npmjs.org/stripe/-/stripe-10.15.0.tgz"
+  "version" "10.15.0"
+  dependencies:
+    "@types/node" ">=8.1.0"
+    "qs" "^6.11.0"
 
 "styled-jsx@5.0.7":
   "integrity" "sha512-b3sUzamS086YLRuvnaDigdAewz1/EFYlHpYBP5mZovKEdQQOIIYq8lApylub3HHZ6xFjV051kkGU7cudJmrXEA=="

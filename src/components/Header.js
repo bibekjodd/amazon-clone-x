@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { HiOutlineSearch } from 'react-icons/hi'
 import { CgShoppingCart } from 'react-icons/cg'
 import { AiOutlineMenu } from 'react-icons/ai'

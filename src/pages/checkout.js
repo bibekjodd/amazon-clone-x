@@ -1,14 +1,25 @@
 import Image from "next/image"
 import Header from "../components/Header"
-import { selectItems, selectTotal } from "../slices/basketReducer"
-import { useSelector } from 'react-redux'
+import { addToBasket, selectItems, selectTotal } from "../slices/basketReducer"
+import { useSelector, useDispatch } from 'react-redux'
 import CheckoutProduct from "../components/CheckoutProduct"
 import { useSession } from "next-auth/react"
+import { useEffect } from "react"
 
 function checkout() {
+    const dispatch = useDispatch();
     const items = useSelector(selectItems);
     const { data } = useSession();
     const total = useSelector(selectTotal);
+    useEffect(() => {
+        const localBasket = JSON.parse(localStorage.getItem('amazon'));
+        if (localBasket && items.length < 1) {
+            localBasket.forEach(element => {
+                console.log(element)
+                dispatch(addToBasket(element));
+            })
+        }
+    }, [])
     return (
         <div className='bg-gray-100 '>
             <Header />

@@ -9,7 +9,7 @@ function Product({ id, title, price, description, category, image, }) {
         const product = {
             id, title, price, description, category, image
         }
-        dispatch(addToBasket(product))
+        dispatch(addToBasket(product));
     }
     return (
         <div className="relative flex flex-col m-5 bg-white z-30 p-10 rounded-sm">

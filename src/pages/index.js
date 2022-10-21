@@ -1,9 +1,22 @@
-import Head from "next/head"
+import { useEffect } from "react"
 import Banner from "../components/Banner"
 import Header from "../components/Header"
 import ProductFeed from "../components/ProductFeed"
+import { addToBasket, selectItems } from "../slices/basketReducer"
+import { useDispatch, useSelector } from 'react-redux'
 
 function index({ products }) {
+  const items = useSelector(selectItems);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const localBasket = JSON.parse(localStorage.getItem('amazon'));
+    if (localBasket && items.length < 1) {
+      localBasket.forEach(element => {
+        console.log(element)
+        dispatch(addToBasket(element));
+      })
+    }
+  }, [])
   return (
     <div className="">
       <Header />

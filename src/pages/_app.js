@@ -22,7 +22,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     <Provider store={store}>
       <SessionProvider>
         <LoadingBar
-          // color='rgb(202 138 4)'
           color='rgb(234 179 8)'
           progress={progress}
           waitingTime={200}

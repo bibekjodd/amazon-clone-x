@@ -6,22 +6,50 @@ import CheckoutProduct from "../components/CheckoutProduct"
 import { useSession } from "next-auth/react"
 import { useEffect } from "react"
 import { loadStripe } from '@stripe/stripe-js'
-const stripePromise = loadStripe();
+import axios from 'axios'
+const stripePromise = loadStripe(process.env.stripe_public_key);
 
 function checkout() {
-    const dispatch = useDispatch();
     const items = useSelector(selectItems);
-    const { data } = useSession();
     const total = useSelector(selectTotal);
+    const dispatch = useDispatch();
+    const { data } = useSession();
+
+
     useEffect(() => {
         const localBasket = JSON.parse(localStorage.getItem('amazon'));
         if (localBasket && items.length < 1) {
             localBasket.forEach(element => {
-                console.log(element)
                 dispatch(addToBasket(element));
             })
         }
-    }, [])
+    }, []);
+
+
+    const createCheckoutSession = async () => {
+        try {
+            localStorage.clear();
+            const stripe = await stripePromise;
+            const checkoutSession = await axios.post('/api/create-checkout-session', {
+                items: items,
+                email: data.user.email,
+                timestamp: serverTimestamp
+            });
+            const result = await stripe.redirectToCheckout({
+                sessionId: checkoutSession.data.id
+            });
+
+            if (result.error)
+                return alert(result.error.message)
+
+
+        } catch (error) {
+            console.log('error')
+        }
+    }
+
+
+
     return (
         <div className='bg-gray-100 '>
             <Header />
@@ -54,12 +82,15 @@ function checkout() {
                     <div className='bg-white whitespace-nowrap  shadow-md flex flex-col p-10'>
                         <h2 className="whitespace-nowrap">Subtotal ({items.length} items): ${total}
                         </h2>
-                        {data ? <button className={`button mt-2`}>
-                            Proceed to checkout
-                        </button> :
-                            <button className={'disabled-button cursor-not-allowed'} disabled={!data}>
-                                Sign in to checkout
-                            </button>}
+                        <button onClick={createCheckoutSession}
+                            className='mt-3'>
+                            {data ? <span className={`button `}>
+                                Proceed to checkout
+                            </span> :
+                                <span className={'disabled-button cursor-not-allowed'} disabled={!data}>
+                                    Sign in to checkout
+                                </span>}
+                        </button>
                     </div>
                 )}
             </main>

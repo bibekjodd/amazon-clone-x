@@ -12,7 +12,6 @@ function index({ products }) {
     const localBasket = JSON.parse(localStorage.getItem('amazon'));
     if (localBasket && items.length < 1) {
       localBasket.forEach(element => {
-        console.log(element)
         dispatch(addToBasket(element));
       })
     }

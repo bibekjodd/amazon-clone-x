@@ -6,12 +6,12 @@ function signin({ providers }) {
             <div className='w-fit flex flex-col space-y-2'>
                 {Object.values(providers).map(provider => (
                     <button key={provider.id} onClick={() => { signIn(provider.id, { callbackUrl: '/' }) }}
-                        className='flex space-x-2  bg-blue-600 text-white rounded-sm overflow-hidden'>
-                        <p className='text-xl px-5 py-1'>
+                        className='flex space-x-2   text-white bg-white rounded-tl-md rounded-bl-md overflow-hidden'>
+                        <p className='text-lg px-7 pr-3 py-1 bg-blue-600'>
                             Sign In with {provider.name}
 
                         </p>
-                        <p className='bg-white self-center'>{provider.name === 'Google' ? <FcGoogle className='text-4xl' /> : ''}</p>
+                        <p className='bg-white self-center px-1'>{provider.name === 'Google' ? <FcGoogle className='text-4xl' /> : ''}</p>
                     </button>
                 ))}
             </div>

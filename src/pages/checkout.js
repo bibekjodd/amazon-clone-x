@@ -44,7 +44,7 @@ function checkout() {
                         {data ? <button className={`button mt-2`}>
                             Proceed to checkout
                         </button> :
-                            <button className={'disabled-button'} disabled={!data}>
+                            <button className={'disabled-button cursor-not-allowed'} disabled={!data}>
                                 Sign in to checkout
                             </button>}
                     </div>

@@ -4,6 +4,9 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['fakestoreapi.com',]
+  },
+  eslint: {
+    ignoreDuringBuilds: true
   }
 }
 

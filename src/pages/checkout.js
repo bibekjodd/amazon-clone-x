@@ -34,8 +34,7 @@ function checkout() {
                 items: items,
                 email: data.user.email,
             });
-            console.log(checkoutSession)
-            // localStorage.clear();
+            localStorage.clear();
             const result = await stripe.redirectToCheckout({
                 sessionId: checkoutSession.data.id
             });

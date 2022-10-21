@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import CheckoutProduct from "../components/CheckoutProduct"
 import { useSession } from "next-auth/react"
 import { useEffect } from "react"
+import { loadStripe } from '@stripe/stripe-js'
+const stripePromise = loadStripe();
 
 function checkout() {
     const dispatch = useDispatch();
@@ -23,7 +25,7 @@ function checkout() {
     return (
         <div className='bg-gray-100 '>
             <Header />
-            <main className="lg:flex max-w-screen-xl mx-auto ">
+            <main className="lg:flex max-w-screen-xl mx-auto items-start">
                 {/* left */}
                 <div className="flex-grow m-5 shadow-sm">
                     <Image src='https://links.papareact.com/ikj' width={1020} height={250} objectFit='contain' />

@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { useEffect } from 'react';
 import { AiFillStar } from "react-icons/ai"
 import { useDispatch } from 'react-redux'
 import { addToBasket, removeFromBasket } from '../slices/basketReducer';
@@ -13,21 +12,23 @@ function CheckoutProduct({ id, title, price, rating, description, category, imag
     const removeItemFromBasket = () => {
         dispatch(removeFromBasket({ id }))
     }
-   
+
     return (
         <div className='grid grid-cols-5 relative my-7'>
             {/* left  */}
-            <Image
-                src={image}
-                height={200}
-                width={200}
-                objectFit='contain'
-            />
+            <div className='col-span-full sm:col-span-2 md:col-span-1 mb-5 md:mb-0 grid place-items-center w-full'>
+                <Image
+                    src={image}
+                    height={200}
+                    width={200}
+                    objectFit='contain'
+                />
+            </div>
             {/* middle */}
-            <div className='col-span-4 md:col-span-3 mx-5'>
-                <p>{title}</p>
+            <div className='col-span-full sm:col-span-3 mx-5'>
+                <p className='font-semibold sm:text-lg'>{title}</p>
                 <div className='flex'>
-                    <AiFillStar className='text-yellow-500' />
+                    <AiFillStar className='text-yellow-500 ' />
                     <AiFillStar className='text-yellow-500' />
                     <AiFillStar className='text-yellow-500' />
                     <AiFillStar className='text-yellow-500' />
